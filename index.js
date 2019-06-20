@@ -1,4 +1,6 @@
 const express= require("express");
+var bodyparser = require('body-parser');
+var methodOverride = require('method-override');
 const swaggerUi = require('swagger-ui-express');
 global.rootdir = __dirname;
 var app = express();
@@ -25,6 +27,9 @@ app.get('/api-docs.json', (req, res) => {
   res.send(swaggerSpec);
 });
 
+app.use(bodyparser.json({limit: '50mb'}));
+app.use(bodyparser.urlencoded({limit:'50mb', extended: true}));
+app.use(methodOverride('X-HTTP-Method-Override'));
 
 const specs = swaggerJSDoc(options);
 //const path=require("path");
@@ -54,6 +59,7 @@ app.use(basicAuth);*/
 
 var indexRoutes = require("./routers/router");
 app.use(indexRoutes);
+
     
 const port=process.env.PORT||8080;
 app.listen(port, function(){

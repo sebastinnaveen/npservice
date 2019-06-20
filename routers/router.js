@@ -1,5 +1,5 @@
 var express = require("express");
-const router=express.Router({mergeParams:true});
+var router = express.Router();
 var controller = require(rootdir+'/controllers/controller'); 
 /**
  * @swagger
@@ -14,6 +14,11 @@ var controller = require(rootdir+'/controllers/controller');
 */
 router.get("/dashboard",async function(req,res,next){
     await controller.getDashboard(req,res,next);
+});
+
+router.post("/np",async function(req,res,next){
+    //console.log(req.body);
+    await controller.neuralprocess(req,res,next);
 });
 
 module.exports=router;
