@@ -22,7 +22,12 @@ module.exports = {
 		callback(insertStatus);
 		
 	},
-	
+	updateData:function(url,payload,callback){
+		//var obj = {"dialogflow":"10"};
+		var updateStatus =  firebaseNodejs.updateData(fbConnection,url,payload);
+		callback(updateStatus);
+		
+	},	
 	getData: function(url,callback){
 		//console.log(url)
 	firebaseNodejs.selectData(fbConnection, url, 'value', response => {

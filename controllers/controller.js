@@ -14,7 +14,7 @@ finalObject.neuralprocess = async function(req,res,next){
     //console.log(req.body)
     var searchStr = req.body.searchStr;
     try {
-       var result = await npService.doNP(searchStr);
+       var result = await npService.doNP(searchStr.trim());
        res.status(200).json({"message":result});
     } catch (error) {
         res.send(error);

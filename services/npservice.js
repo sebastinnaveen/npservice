@@ -8,6 +8,35 @@ function saveData(data){
         console.log(status);
     });
 }
+
+function saveNPData(words, callBack){
+    var npArrData = [];
+    var npData = {
+        id:0,
+        status: 'pending',
+        words:words
+    }
+    fbService.getData('/npwords', function(res){
+         
+        if(res){
+           npArrData = _.clone(res);
+           var max = _.maxBy(res, 'id');
+           npData.id = max.id + 1;
+           npArrData.push(npData);
+           fbService.updateData('/npwords', npArrData, function(res){
+                callBack(npData.id);
+            });
+        }else{
+            npData.id=1;
+            npArrData.push(npData);
+            fbService.insertData('/npwords', npArrData, function(res){
+                callBack(npData.id);
+            });
+        }
+        
+        
+    });
+}
 module.exports = {
     doNP: async function(str){
         var data = [];
@@ -16,7 +45,7 @@ module.exports = {
         fbService.getData('/words', function(jsonResponse){
             if(jsonResponse)
            {
-            console.log(jsonResponse)
+            //console.log(jsonResponse)
             
                 var res = stringSimilarity.findBestMatch(str, jsonResponse);	
                 var matched =  _.filter(res.ratings, function(o) { return o.rating > parRate });
@@ -24,6 +53,7 @@ module.exports = {
                     words = _.map(matched, 'target');
                     var newWords =  _.difference(jsonResponse, words);
                     data = _.clone(newWords);
+                    sendApproval = true;
                 }else{
                     jsonResponse.push(str);
                     data = _.clone(jsonResponse);
@@ -34,7 +64,12 @@ module.exports = {
                         setTimeout(function () {
                             saveData(data);
                             if(sendApproval){
-                                console.log(words);
+                                var npWords = _.clone(words);
+                                npWords.push(str);
+                               saveNPData(npWords, function(id){
+                                //console.log(id);
+                               });
+                                
                             }
                           }, 1000)
                         
