@@ -1,0 +1,29 @@
+{
+  "name": "hydrocarbon_central_platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "mocha test/test.js",
+    "test-watch": "nodemon --exec 'npm test'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "basic-auth": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "expect": "^24.1.0",
+    "express": "^4.16.4",
+    "express-swagger-generator": "^1.1.14",
+    "lodash": "^4.17.11",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10",
+    "request": "^2.88.0",
+    "sinon": "^7.2.7",
+    "supertest": "^3.4.2",
+    "swagger-jsdoc": "^3.2.9",
+    "swagger-ui-express": "^4.0.2"
+  }
+}
