@@ -1,0 +1,31 @@
+sudo: false
+language: node_js
+
+node_js:
+  10
+
+before_install:
+  - gcloud auth activate-service-account --key-file client-secret.json
+  
+install:
+  
+  - gcloud config set project techbot-244314
+    
+  - npm install
+
+script:
+  
+
+  - gcloud -q app deploy app.yaml --promote
+
+  
+
+ 
+
+notifications:
+  email:
+    recipients:
+      - sebasmtech@gmail.com
+    on_success: never
+    on_failure: always
+
