@@ -1,7 +1,9 @@
 var fbService = require(rootdir+'/services/firebaseservice.js');
 var stringSimilarity = require('string-similarity');
 var _ = require('lodash');
+const axios = require('axios');
 var parRate = 0.4;
+const apiurl = 'https://instbotrpa.appspot.com/instbot/getnlpwords'
 
 function saveData(data){
     fbService.insertData('/words', data, function(status){
@@ -67,7 +69,16 @@ module.exports = {
                                 var npWords = _.clone(words);
                                 npWords.push(str);
                                saveNPData(npWords, function(id){
-                                //console.log(id);
+                                console.log(id);
+                                axios.post(apiurl, {
+                                    approvalId: id                                    
+                                  })
+                                  .then(function (response) {
+                                    //console.log(response);
+                                  })
+                                  .catch(function (error) {
+                                    console.log(error);
+                                  });
                                });
                                 
                             }

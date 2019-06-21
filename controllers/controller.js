@@ -10,6 +10,16 @@ finalObject.getDashboard = async function(req,res,next){
     }
 };
 
+finalObject.test = async function(req,res,next){
+    try {
+        fbService.getData('/npwords', function(resp){
+            res.send(resp);
+        });
+    } catch (error) {
+        res.send(error);
+    }
+};
+
 finalObject.neuralprocess = async function(req,res,next){
     //console.log(req.body)
     var searchStr = req.body.searchStr;

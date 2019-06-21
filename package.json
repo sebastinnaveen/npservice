@@ -11,10 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.0",
     "basic-auth": "^2.0.1",
     "body-parser": "^1.18.3",
-    "config": "^1.30.0",
     "chai": "^4.2.0",
+    "config": "^1.30.0",
     "expect": "^24.1.0",
     "express": "^4.16.4",
     "express-swagger-generator": "^1.1.14",

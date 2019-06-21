@@ -16,6 +16,8 @@ router.get("/dashboard",async function(req,res,next){
     await controller.getDashboard(req,res,next);
 });
 
+
+
 router.post("/np",async function(req,res,next){
     //console.log(req.body);
     await controller.neuralprocess(req,res,next);
