@@ -22,7 +22,7 @@
     "firebase": "^6.0.4",
     "firebase-admin": "^8.0.0",
     "firebase-nodejs": "^1.0.1-1.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "method-override": "^2.3.10",
     "mocha": "^6.0.2",
     "nodemon": "^1.18.10",
